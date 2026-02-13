@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.45](https://github.com/archestra-ai/archestra/compare/platform-v1.0.44...platform-v1.0.45) (2026-02-13)
+
+
+### Bug Fixes
+
+* enforce dynamic credential for playwright, handle case when user doesn't have playwright installed but chat needs it ([#2787](https://github.com/archestra-ai/archestra/issues/2787)) ([8de3f19](https://github.com/archestra-ai/archestra/commit/8de3f19e25acef607d0e913dfad698409fd20863))
+* update MCP policy CRUD tool inputSchemas to match DB schema ([#2776](https://github.com/archestra-ai/archestra/issues/2776)) ([123ec10](https://github.com/archestra-ai/archestra/commit/123ec105d056db12402e1eb5b67d9bd28504b4d6))
+
+
+### Miscellaneous Chores
+
+* improve msteams agents trigger ([#2785](https://github.com/archestra-ai/archestra/issues/2785)) ([171febf](https://github.com/archestra-ai/archestra/commit/171febf31d05dc87db49cc07ed4b79db16b75615))
+
 ## [1.0.44](https://github.com/archestra-ai/archestra/compare/platform-v1.0.42...platform-v1.0.44) (2026-02-13)
 
 
