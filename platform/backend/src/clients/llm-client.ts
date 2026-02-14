@@ -87,6 +87,7 @@ const envApiKeyGetters: Record<
   ollama: () => config.chat.ollama.apiKey,
   openai: () => config.chat.openai.apiKey,
   vllm: () => config.chat.vllm.apiKey,
+  minimax: () => config.chat.minimax.apiKey,
   zhipuai: () => config.chat.zhipuai.apiKey,
 };
 
@@ -198,6 +199,7 @@ export const FAST_MODELS: Record<SupportedChatProvider, string> = {
   cohere: "command-light", // Cohere's fast model
   vllm: "default", // vLLM uses whatever model is deployed
   ollama: "llama3.2", // Common fast model for Ollama
+  minimax: "MiniMax-Text-01", // MiniMax's fast model
   zhipuai: "glm-4-flash", // Zhipu's fast model
   bedrock: "amazon.nova-lite-v1:0", // Bedrock's fast model, available in all regions for on-demand inference
   mistral: "mistral-small-latest", // Mistral's fast model
@@ -327,6 +329,21 @@ const directModelCreators: Record<SupportedChatProvider, DirectModelCreator> = {
     const client = createOpenAI({
       apiKey: apiKey || "EMPTY",
       baseURL: config.llm.ollama.baseUrl,
+    });
+    return client(modelName);
+  },
+
+  minimax: ({ apiKey, modelName }) => {
+    if (!apiKey) {
+      throw new ApiError(
+        400,
+        "MiniMax API key is required. Please configure MINIMAX_API_KEY.",
+      );
+    }
+    // MiniMax uses OpenAI-compatible API
+    const client = createOpenAI({
+      apiKey,
+      baseURL: config.llm.minimax.baseUrl,
     });
     return client(modelName);
   },
@@ -506,6 +523,17 @@ const proxiedModelCreators: Record<SupportedChatProvider, ProxiedModelCreator> =
         headers,
       });
       // Use .chat() to force Chat Completions API
+      return client.chat(modelName);
+    },
+
+    minimax: ({ apiKey, agentId, modelName, headers }) => {
+      // URL format: /v1/minimax/:agentId (SDK appends /chat/completions)
+      // MiniMax is OpenAI-compatible, so we use the OpenAI SDK with custom baseURL
+      const client = createOpenAI({
+        apiKey,
+        baseURL: buildProxyBaseUrl("minimax", agentId),
+        headers,
+      });
       return client.chat(modelName);
     },
 

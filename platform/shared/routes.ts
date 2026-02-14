@@ -180,6 +180,10 @@ export const RouteId = {
   OllamaChatCompletionsWithDefaultAgent:
     "ollamaChatCompletionsWithDefaultAgent",
   OllamaChatCompletionsWithAgent: "ollamaChatCompletionsWithAgent",
+  // Proxy Routes - MiniMax
+  MinimaxChatCompletionsWithDefaultAgent:
+    "minimaxChatCompletionsWithDefaultAgent",
+  MinimaxChatCompletionsWithAgent: "minimaxChatCompletionsWithAgent",
   // Proxy Routes - Zhipu AI
   ZhipuaiChatCompletionsWithDefaultAgent:
     "zhipuaiChatCompletionsWithDefaultAgent",

@@ -7,4 +7,5 @@ export { mistralAdapterFactory } from "./mistral";
 export { ollamaAdapterFactory } from "./ollama";
 export { openaiAdapterFactory } from "./openai";
 export { vllmAdapterFactory } from "./vllm";
+export { minimaxAdapterFactory } from "./minimax";
 export { zhipuaiAdapterFactory } from "./zhipuai";
