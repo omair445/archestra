@@ -220,6 +220,7 @@ const MODELS_DEV_PROVIDER_MAP: Record<string, SupportedProvider | null> = {
   togetherai: "openai",
   perplexity: null,
   xai: null,
+  deepseek: "openai",
   nvidia: null,
   "amazon-bedrock": "bedrock",
   azure: null,
